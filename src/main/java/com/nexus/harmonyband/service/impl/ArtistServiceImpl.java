@@ -20,9 +20,20 @@ public class ArtistServiceImpl implements ArtistService {
         return artistRepository.findAll();
     }
 
+    public ArtistEntity getArtist(Long artistId){
+        return artistRepository.findById(artistId).orElseThrow();
+    }
+
     @Override
     @Transactional
     public ArtistEntity save(ArtistEntity artistEntity) {
         return artistRepository.save(artistEntity);
+    }
+
+    @Transactional
+    public void delete(Long artistId) {
+            artistRepository.deleteById(artistId);
+            artistRepository.flush();
+
     }
 }
