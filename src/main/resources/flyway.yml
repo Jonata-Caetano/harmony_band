@@ -1,0 +1,4 @@
+flyway:
+  url: jdbc:mysql://localhost/algafood?createDatabaseIfNotExist=true&serverTimezone=UTC
+  user: root
+  password: 

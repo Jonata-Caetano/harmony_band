@@ -1,0 +1,18 @@
+version: "3.9"
+
+networks:
+  nexus-network:
+    driver: bridge
+
+services:
+  algafood-mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: harmony_band
+    ports:
+      - "13306:3306"
+    networks:
+      - nexus-network

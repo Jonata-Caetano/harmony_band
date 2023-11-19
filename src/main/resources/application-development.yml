@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    username: root
+    password:
+  jpa:
+    show-sql: true
+  flyway:
+    locations: classpath:db/migration, classpath:db/testdata
