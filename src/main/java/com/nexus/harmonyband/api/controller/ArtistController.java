@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import javax.validation.Valid;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -51,7 +51,7 @@ public class ArtistController {
     }
 
     @PutMapping("/{artistId}")
-    public ArtistModel updated(@PathVariable Long artistId, @RequestBody @Valid ArtistInput artistInput){
+    public ArtistModel updated(@PathVariable Long artistId, @RequestBody @Valid ArtistInput artistInput) {
         var currentArtist = service.getArtist(artistId);
         artistInputDisassembler.copytoDomainObject(artistInput, currentArtist);
         currentArtist = service.save(currentArtist);
@@ -61,7 +61,7 @@ public class ArtistController {
 
     @DeleteMapping("/{artistId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> delete(@PathVariable Long artistId){
+    public ResponseEntity<Void> delete(@PathVariable Long artistId) {
         service.delete(artistId);
         return ResponseEntity.noContent().build();
     }
