@@ -8,5 +8,10 @@ public interface ArtistService {
 
     List<ArtistEntity> getAllArtists();
 
+    ArtistEntity getArtist(Long artistId);
+
     ArtistEntity save(ArtistEntity artistEntity);
+
+    void delete(Long artistId);
+
 }
