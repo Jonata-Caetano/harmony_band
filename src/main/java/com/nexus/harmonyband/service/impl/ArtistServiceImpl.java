@@ -20,7 +20,7 @@ public class ArtistServiceImpl implements ArtistService {
         return artistRepository.findAll();
     }
 
-    public ArtistEntity getArtist(Long artistId){
+    public ArtistEntity getArtist(Long artistId) {
         return artistRepository.findById(artistId).orElseThrow();
     }
 
@@ -32,8 +32,8 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Transactional
     public void delete(Long artistId) {
-            artistRepository.deleteById(artistId);
-            artistRepository.flush();
+        artistRepository.deleteById(artistId);
+        artistRepository.flush();
 
     }
 }

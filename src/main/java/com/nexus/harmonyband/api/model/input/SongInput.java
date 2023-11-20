@@ -5,10 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AlbumInput {
+public class SongInput {
 
     private Long id;
     private String title;
-    private ArtistInput artist;
+    private AlbumInput album;
 
 }
