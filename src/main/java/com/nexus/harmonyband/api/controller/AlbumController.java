@@ -1,12 +1,25 @@
 package com.nexus.harmonyband.api.controller;
 
+import com.nexus.harmonyband.api.assembler.AlbumInputDisassembler;
+import com.nexus.harmonyband.api.assembler.AlbumModelAssembler;
+import com.nexus.harmonyband.api.model.AlbumModel;
+import com.nexus.harmonyband.api.model.input.AlbumInput;
 import com.nexus.harmonyband.domain.AlbumEntity;
-import com.nexus.harmonyband.infrastructure.AlbumRepository;
+import com.nexus.harmonyband.service.impl.AlbumServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -14,12 +27,44 @@ import java.util.List;
 @RequestMapping("/v1/albums")
 public class AlbumController {
 
-    private final AlbumRepository albumRepository;
+    private final AlbumServiceImpl service;
+    private final AlbumInputDisassembler albumInputDisassembler;
+    private final AlbumModelAssembler albumModelAssembler;
 
     @GetMapping
-    public List<AlbumEntity> getAllAlbums() {
+    public List<AlbumModel> getAllAlbums() {
+        List<AlbumEntity> albums = service.getAllAlbums();
+        return albumModelAssembler.toCollectionModel(albums);
+    }
 
-        return albumRepository.findAll();
+    @GetMapping("/{albumId}")
+    public AlbumModel getAlbum(@PathVariable Long albumId) {
+        var album = service.getAlbum(albumId);
+        return albumModelAssembler.toModel(album);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public AlbumModel add(@RequestBody AlbumInput albumInput) {
+        var albumEntity = albumInputDisassembler.toDomainObject(albumInput);
+        var album = service.save(albumEntity);
+        return albumModelAssembler.toModel(album);
+    }
+
+    @PutMapping("/{albumId}")
+    public AlbumModel update(@PathVariable Long albumId, @RequestBody @Valid AlbumInput albumInput) {
+        var currentAlbum = service.getAlbum(albumId);
+        albumInputDisassembler.copytoDomainObject(albumInput, currentAlbum);
+        currentAlbum = service.save(currentAlbum);
+
+        return albumModelAssembler.toModel(currentAlbum);
+    }
+
+    @DeleteMapping("/{albumId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> remove(@PathVariable Long albumId) {
+        service.delete(albumId);
+        return ResponseEntity.noContent().build();
     }
 }
 

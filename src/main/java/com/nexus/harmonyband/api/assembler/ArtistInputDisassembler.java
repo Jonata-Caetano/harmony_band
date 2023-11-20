@@ -20,7 +20,7 @@ public class ArtistInputDisassembler {
         return modelMapper.map(artistInput, ArtistEntity.class);
     }
 
-    public void copytoDomainObject(ArtistInput artistInput, ArtistEntity artistEntity){
+    public void copytoDomainObject(ArtistInput artistInput, ArtistEntity artistEntity) {
         modelMapper.map(artistInput, artistEntity);
     }
 }

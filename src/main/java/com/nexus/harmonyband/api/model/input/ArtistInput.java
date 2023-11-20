@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class ArtistInput {
 
+    private Long id;
     private String name;
 }
