@@ -9,13 +9,14 @@ spring:
       dialect: org.hibernate.dialect.MySQL57Dialect
     show-sql: true
   flyway:
+    clean-disabled: false
     locations: classpath:db/migration, classpath:db/testdata
+
   mvc:
     throw-exception-if-no-handler-found: true
   web:
     resources:
       add-mappings: false
-
 
 
 
