@@ -4,9 +4,8 @@ DROP TABLE IF EXISTS artist;
 
 CREATE TABLE artist (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100)
+    name VARCHAR(100) NOT NULL
 );
-
 CREATE TABLE album (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100),
@@ -17,6 +16,7 @@ CREATE TABLE album (
 CREATE TABLE song (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100),
+    tempo VARCHAR(5),
     album_id BIGINT,
     FOREIGN KEY (album_id) REFERENCES album(id)
 );
