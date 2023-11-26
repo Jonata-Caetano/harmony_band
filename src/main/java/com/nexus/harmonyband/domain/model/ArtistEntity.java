@@ -22,9 +22,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
 @Table(name = "artist")
-public class ArtistEntity {
+public class ArtistEntity extends Auditable {
 
     @EqualsAndHashCode.Include
     @Id
