@@ -1,6 +1,6 @@
 package com.nexus.harmonyband.infrastructure;
 
-import com.nexus.harmonyband.domain.ArtistEntity;
+import com.nexus.harmonyband.domain.model.ArtistEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

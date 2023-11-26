@@ -15,8 +15,8 @@ insert into album (id, title, artist_id) values (4, 'Pra Onde Iremos', 2);
 
 -- Fernandinho
 -- Álbum: Galileu
-INSERT INTO song (id, title, album_id) VALUES (1, 'A Alegria do Senhor', 1);
-INSERT INTO song (id, title, album_id) VALUES (2, 'Teus Sonhos', 1);
+INSERT INTO song (id, title, tempo, album_id) VALUES (1, 'A Alegria do Senhor',"100", 1);
+INSERT INTO song (id, title, tempo, album_id) VALUES (2, 'Teus Sonhos',"152", 1);
 INSERT INTO song (id, title, album_id) VALUES (3, 'Pra Sempre', 1);
 INSERT INTO song (id, title, album_id) VALUES (4, 'Quao Lindo Esse Nome E', 1);
 INSERT INTO song (id, title, album_id) VALUES (5, 'Jesus, Filho de Deus', 1);
