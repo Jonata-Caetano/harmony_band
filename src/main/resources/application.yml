@@ -2,21 +2,25 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/harmony_band?createDatabaseIfNotExist=true&serverTimezone=UTC
     username: root
-    password:
+    password: null
   jpa:
     properties:
       hibernate:
-      dialect: org.hibernate.dialect.MySQL57Dialect
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategySnakeCaseImpl
+        hbm2ddl:
+          auto: update
     show-sql: true
   flyway:
     clean-disabled: false
-    locations: classpath:db/migration, classpath:db/testdata
-
+    locations: 'classpath:db/migration, classpath:db/testdata'
   mvc:
     throw-exception-if-no-handler-found: true
   web:
     resources:
       add-mappings: false
-
-
-
+  logging:
+    level:
+      org.hibernate.SQL: debug
+      org.hibernate.type.descriptor.sql.BasicBinder: trace

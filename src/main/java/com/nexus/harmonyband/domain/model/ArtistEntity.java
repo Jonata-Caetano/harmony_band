@@ -26,8 +26,9 @@ import lombok.Setter;
 @Table(name = "artist")
 public class ArtistEntity extends Auditable {
 
-    @EqualsAndHashCode.Include
+
     @Id
+    @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank

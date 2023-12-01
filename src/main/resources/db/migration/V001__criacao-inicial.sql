@@ -3,27 +3,37 @@ DROP TABLE IF EXISTS album;
 DROP TABLE IF EXISTS artist;
 
 CREATE TABLE artist (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    createdDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    lastModifiedDate TIMESTAMP
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_modifie_date TIMESTAMP
 );
 
 CREATE TABLE album (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100),
-    artist_id BIGINT,
-    FOREIGN KEY (artist_id) REFERENCES artist(id)
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(100),
+  artist_id BIGINT,
+  created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_modified_date TIMESTAMP,
+  FOREIGN KEY(artist_id) REFERENCES artist(id)
 );
 
 CREATE TABLE song (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100),
-    tempo VARCHAR(5),
-    album_id BIGINT,
-    FOREIGN KEY (album_id) REFERENCES album(id)
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(100),
+  tempo VARCHAR(5),
+  album_id BIGINT,
+  song_key VARCHAR(10),
+  bpm VARCHAR(5),
+  time_sig VARCHAR(10),
+  status TINYINT(1) DEFAULT 1,
+  chart VARCHAR(100),
+  song VARCHAR(100),
+  playback VARCHAR(100),
+  created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_modified_date TIMESTAMP,
+  FOREIGN KEY(album_id) REFERENCES album(id)
 );
-
 
 
 

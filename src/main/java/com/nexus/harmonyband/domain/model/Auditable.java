@@ -17,13 +17,14 @@ public abstract class Auditable {
     //protected String createdBy;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_date", nullable = false, updatable = false)
     protected LocalDateTime createdDate;
 
     //@LastModifiedBy
     //protected String lastModifiedBy;
 
     @LastModifiedDate
+    @Column(name = "last_modified_date")
     protected LocalDateTime lastModifiedDate;
 
 }
