@@ -20,6 +20,7 @@ public class ArtistModelAssembler {
     }
 
     public ArtistModel toModel(ArtistEntity artistEntity) {
+
         return modelMapper.map(artistEntity, ArtistModel.class);
     }
 
