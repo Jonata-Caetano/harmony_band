@@ -6,10 +6,10 @@ import com.nexus.harmonyband.domain.service.ArtistService;
 import com.nexus.harmonyband.domain.service.SongService;
 import com.nexus.harmonyband.infrastructure.SongRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,8 +19,8 @@ public class SongServiceImpl implements SongService {
     private final ArtistService artistService;
 
     @Override
-    public List<SongEntity> getAllSongs() {
-        return songRepository.findAll();
+    public Page<SongEntity> getAllSongs(Pageable pageable) {
+        return songRepository.findAll(pageable);
     }
 
     @Override

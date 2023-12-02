@@ -8,6 +8,9 @@ import com.nexus.harmonyband.domain.model.SongEntity;
 import com.nexus.harmonyband.domain.service.impl.SongServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/songs")
@@ -32,9 +33,9 @@ public class SongController {
     private final SongModelAssembler songModelAssembler;
 
     @GetMapping
-    public List<SongModel> getAllSongs() {
-        List<SongEntity> songs = service.getAllSongs();
-        return songModelAssembler.toCollectionModel(songs);
+    public Page<SongModel> getAllSongs(@PageableDefault(size = 10) Pageable pageable) {
+        Page<SongEntity> songsPage = service.getAllSongs(pageable);
+        return songsPage.map(songModelAssembler::toModel);
     }
 
     @GetMapping("/{songId}")

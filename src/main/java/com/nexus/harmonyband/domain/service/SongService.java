@@ -1,12 +1,13 @@
 package com.nexus.harmonyband.domain.service;
 
 import com.nexus.harmonyband.domain.model.SongEntity;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface SongService {
 
-    List<SongEntity> getAllSongs();
+
+    Page<SongEntity> getAllSongs(Pageable pageable);
 
     SongEntity getSong(Long albumId);
 
