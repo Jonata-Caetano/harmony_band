@@ -8,10 +8,10 @@ import com.nexus.harmonyband.infrastructure.ArtistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +22,9 @@ public class ArtistServiceImpl implements ArtistService {
     private final ArtistRepository artistRepository;
 
     @Override
-    public List<ArtistEntity> getAllArtists() {
+    public Page<ArtistEntity> getAllArtists(Pageable pageable) {
 
-        return artistRepository.findAll();
+        return artistRepository.findAll(pageable);
     }
 
     @Override

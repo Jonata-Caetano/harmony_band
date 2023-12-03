@@ -1,12 +1,12 @@
 package com.nexus.harmonyband.domain.service;
 
 import com.nexus.harmonyband.domain.model.ArtistEntity;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ArtistService {
 
-    List<ArtistEntity> getAllArtists();
+    Page<ArtistEntity> getAllArtists(Pageable pageable);
 
     ArtistEntity getArtist(Long artistId);
 
