@@ -8,6 +8,9 @@ import com.nexus.harmonyband.domain.model.AlbumEntity;
 import com.nexus.harmonyband.domain.service.impl.AlbumServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/albums")
@@ -32,9 +33,9 @@ public class AlbumController {
     private final AlbumModelAssembler albumModelAssembler;
 
     @GetMapping
-    public List<AlbumModel> getAllAlbums() {
-        List<AlbumEntity> albums = service.getAllAlbums();
-        return albumModelAssembler.toCollectionModel(albums);
+    public Page<AlbumModel> getAllAlbums(@PageableDefault(size = 10) Pageable pageable) {
+        Page<AlbumEntity> albumsPage = service.getAllAlbums(pageable);
+        return albumsPage.map(albumModelAssembler::toModel);
     }
 
     @GetMapping("/{albumId}")

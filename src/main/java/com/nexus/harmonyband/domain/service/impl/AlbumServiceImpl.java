@@ -5,10 +5,10 @@ import com.nexus.harmonyband.domain.service.AlbumService;
 import com.nexus.harmonyband.domain.service.ArtistService;
 import com.nexus.harmonyband.infrastructure.AlbumRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -17,8 +17,8 @@ public class AlbumServiceImpl implements AlbumService {
     private final ArtistService artistService;
 
     @Override
-    public List<AlbumEntity> getAllAlbums() {
-        return albumRepository.findAll();
+    public Page<AlbumEntity> getAllAlbums(Pageable pageable) {
+        return albumRepository.findAll(pageable);
     }
 
     @Override
