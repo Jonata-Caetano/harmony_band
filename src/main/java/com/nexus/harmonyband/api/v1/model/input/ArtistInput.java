@@ -1,6 +1,5 @@
 package com.nexus.harmonyband.api.v1.model.input;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +14,4 @@ public class ArtistInput {
     @NotBlank
     private String name;
 
-    @JsonIgnore
-    private String time;
 }

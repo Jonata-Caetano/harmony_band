@@ -1,4 +1,4 @@
-package com.nexus.harmonyband.infrastructure;
+package com.nexus.harmonyband.domain.repository;
 
 import com.nexus.harmonyband.domain.model.SongEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

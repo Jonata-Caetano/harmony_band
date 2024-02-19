@@ -1,10 +1,10 @@
 package com.nexus.harmonyband.domain.service.impl;
 
 import com.nexus.harmonyband.domain.model.SongEntity;
+import com.nexus.harmonyband.domain.repository.SongRepository;
 import com.nexus.harmonyband.domain.service.AlbumService;
 import com.nexus.harmonyband.domain.service.ArtistService;
 import com.nexus.harmonyband.domain.service.SongService;
-import com.nexus.harmonyband.infrastructure.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

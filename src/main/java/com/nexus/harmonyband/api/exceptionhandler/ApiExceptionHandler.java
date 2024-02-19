@@ -7,11 +7,11 @@ import com.nexus.harmonyband.domain.exception.BusinessException;
 import com.nexus.harmonyband.domain.exception.EntityInUseException;
 import com.nexus.harmonyband.domain.exception.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.core.NestedExceptionUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -113,7 +113,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
                                                                   HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        Throwable rootCause = ExceptionUtils.getRootCause(ex);
+        Throwable rootCause = NestedExceptionUtils.getRootCause(ex);
 
         if (rootCause instanceof InvalidFormatException e) {
             return handleInvalidFormat(e, headers, status, request);
